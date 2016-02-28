@@ -314,10 +314,15 @@ typedef  unsigned short  apr_uint16_t;
 typedef  int             apr_int32_t;
 typedef  unsigned int    apr_uint32_t;
 
-#define APR_SIZEOF_VOIDP 8
-
+#ifdef __x86_64__
+#	define APR_SIZEOF_VOIDP 8
  typedef  long            apr_int64_t;
  typedef  unsigned long   apr_uint64_t;
+#else
+#	define APR_SIZEOF_VOIDP 4
+ typedef  long long       apr_int64_t;
+ typedef  unsigned long long apr_uint64_t;
+#endif
 
 typedef  size_t          apr_size_t;
 typedef  ssize_t         apr_ssize_t;
