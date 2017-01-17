@@ -17,7 +17,6 @@ add_definitions(
 )
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -U_POSIX_C_SOURCE -D__DARWIN_UNIX03 -nostdinc -fblocks -fPIC -ggdb -O0")
-set(CMAKE_SHARED_LINKER_FLAGS "-nodefaultlibs -Wl,--version-script=${DARLING_TOP_DIRECTORY}/darwin.map")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/arch/unix)
@@ -125,13 +124,13 @@ set(apr_sources
 	user/unix/userinfo.c
 )
 
-SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/darling")
-SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE) 
-SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-
-add_library(apr SHARED ${apr_sources})
+set(DYLIB_INSTALL_NAME "/usr/lib/libapr-1.0.dylib")
+add_darling_library(apr SHARED ${apr_sources})
 target_link_libraries(apr system)
+set_target_properties(apr PROPERTIES OUTPUT_NAME "apr-1.0")
+
+InstallSymlink("libapr-1.0.dylib" "${CMAKE_INSTALL_PREFIX}/libexec/darling/usr/lib/libapr-1.dylib")
 
 install(TARGETS apr
-	DESTINATION ${CMAKE_INSTALL_LIBDIR}/darling)
+	DESTINATION libexec/darling/usr/lib)
 

@@ -11,7 +11,6 @@ add_definitions(-D__APPLE__ -D__DYNAMIC__)
 add_definitions(-DHAVE_CONFIG_H -U__linux__ -DDARWIN)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -U_POSIX_C_SOURCE -D__DARWIN_UNIX03 -nostdinc -fblocks -fPIC -ggdb -O0")
-set(CMAKE_SHARED_LINKER_FLAGS "-nodefaultlibs -Wl,--version-script=${DARLING_TOP_DIRECTORY}/darwin.map")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/private)
@@ -74,19 +73,23 @@ set(aprutil_sources
 	misc/apu_dso.c
 	misc/apu_version.c
 
+	dbm/sdbm/sdbm.c
+	dbm/sdbm/sdbm_hash.c
+	dbm/sdbm/sdbm_lock.c
+	dbm/sdbm/sdbm_pair.c
+
 	strmatch/apr_strmatch.c
 	uri/apr_uri.c
 	xlate/xlate.c
 	xml/apr_xml.c
 )
 
-SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/darling")
-SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE) 
-SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-
-add_library(aprutil SHARED ${aprutil_sources})
-target_link_libraries(aprutil system apr sqlite3 expat)
+set(DYLIB_INSTALL_NAME "/usr/lib/libaprutil-1.0.dylib")
+add_darling_library(aprutil SHARED ${aprutil_sources})
+target_link_libraries(aprutil system apr sqlite3 expat iconv)
+set_target_properties(aprutil PROPERTIES OUTPUT_NAME "aprutil-1.0")
+InstallSymlink("libaprutil-1.0.dylib" "${CMAKE_INSTALL_PREFIX}/libexec/darling/usr/lib/libaprutil-1.dylib")
 
 install(TARGETS aprutil
-	DESTINATION ${CMAKE_INSTALL_LIBDIR}/darling)
+	DESTINATION libexec/darling/usr/lib)
 
