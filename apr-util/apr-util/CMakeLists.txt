@@ -86,6 +86,7 @@ set(aprutil_sources
 
 set(DYLIB_INSTALL_NAME "/usr/lib/libaprutil-1.0.dylib")
 add_darling_library(aprutil SHARED ${aprutil_sources})
+make_fat(aprutil)
 target_link_libraries(aprutil system apr sqlite3 expat iconv)
 set_target_properties(aprutil PROPERTIES OUTPUT_NAME "aprutil-1.0")
 InstallSymlink("libaprutil-1.0.dylib" "${CMAKE_INSTALL_PREFIX}/libexec/darling/usr/lib/libaprutil-1.dylib")

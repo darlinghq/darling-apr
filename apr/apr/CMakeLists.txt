@@ -126,6 +126,7 @@ set(apr_sources
 
 set(DYLIB_INSTALL_NAME "/usr/lib/libapr-1.0.dylib")
 add_darling_library(apr SHARED ${apr_sources})
+make_fat(apr)
 target_link_libraries(apr system)
 set_target_properties(apr PROPERTIES OUTPUT_NAME "apr-1.0")
 
