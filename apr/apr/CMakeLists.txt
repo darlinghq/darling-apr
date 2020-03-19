@@ -12,11 +12,11 @@ add_definitions(-DHAVE_CONFIG_H -U__linux__ -DDARWIN)
 
 # Hide warnings
 add_definitions(
-	-Wno-incompatible-pointer-types-discards-qualifiers
-	-Wno-implicit-function-declaration
+	-w
+	-nostdinc
 )
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -U_POSIX_C_SOURCE -D__DARWIN_UNIX03 -nostdinc -fblocks -fPIC -ggdb -O0")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -U_POSIX_C_SOURCE -D__DARWIN_UNIX03 -fblocks -fPIC -ggdb -O0")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/arch/unix)

@@ -10,7 +10,9 @@ add_definitions(-DTARGET_OS_MAC=1)
 add_definitions(-D__APPLE__ -D__DYNAMIC__)
 add_definitions(-DHAVE_CONFIG_H -U__linux__ -DDARWIN)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -U_POSIX_C_SOURCE -D__DARWIN_UNIX03 -nostdinc -fblocks -fPIC -ggdb -O0")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -U_POSIX_C_SOURCE -D__DARWIN_UNIX03 -fblocks -fPIC -ggdb -O0")
+
+add_definitions(-nostdinc)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/private)
