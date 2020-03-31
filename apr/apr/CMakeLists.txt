@@ -6,7 +6,7 @@ if(COMMAND cmake_policy)
 	cmake_policy(SET CMP0003 NEW)
 endif(COMMAND cmake_policy)
 
-add_definitions(-DHAVE_CONFIG_H -U__linux__ -DDARWIN)
+add_definitions(-DHAVE_CONFIG_H -DDARWIN)
 
 # Hide warnings
 add_definitions(
