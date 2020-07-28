@@ -69,45 +69,45 @@
 #define APR_HAS_INLINE           1
 #endif
 
-#define APR_HAVE_ARPA_INET_H     1
-#define APR_HAVE_CONIO_H         0
-#define APR_HAVE_CRYPT_H         0
-#define APR_HAVE_CTYPE_H         1
-#define APR_HAVE_DIRENT_H        1
-#define APR_HAVE_ERRNO_H         1
-#define APR_HAVE_FCNTL_H         1
-#define APR_HAVE_IO_H            0
-#define APR_HAVE_LIMITS_H        1
-#define APR_HAVE_NETDB_H         1
-#define APR_HAVE_NETINET_IN_H    1
-#define APR_HAVE_NETINET_SCTP_H  0
-#define APR_HAVE_NETINET_SCTP_UIO_H 0
-#define APR_HAVE_NETINET_TCP_H   1
-#define APR_HAVE_PROCESS_H       0
-#define APR_HAVE_PTHREAD_H       1
-#define APR_HAVE_SEMAPHORE_H     1
-#define APR_HAVE_SIGNAL_H        1
-#define APR_HAVE_STDARG_H        1
-#define APR_HAVE_STDINT_H        1
-#define APR_HAVE_STDIO_H         1
-#define APR_HAVE_STDLIB_H        1
-#define APR_HAVE_STRING_H        1
-#define APR_HAVE_STRINGS_H       1
-#define APR_HAVE_SYS_IOCTL_H     1
-#define APR_HAVE_SYS_SENDFILE_H  0
-#define APR_HAVE_SYS_SIGNAL_H    1
-#define APR_HAVE_SYS_SOCKET_H    1
-#define APR_HAVE_SYS_SOCKIO_H    1
-#define APR_HAVE_SYS_SYSLIMITS_H 1
-#define APR_HAVE_SYS_TIME_H      1
-#define APR_HAVE_SYS_TYPES_H     1
-#define APR_HAVE_SYS_UIO_H       1
-#define APR_HAVE_SYS_UN_H        1
-#define APR_HAVE_SYS_WAIT_H      1
-#define APR_HAVE_TIME_H          1
-#define APR_HAVE_UNISTD_H        1
-#define APR_HAVE_WINDOWS_H       0
-#define APR_HAVE_WINSOCK2_H      0
+#define APR_HAVE_ARPA_INET_H     @arpa_ineth@
+#define APR_HAVE_CONIO_H         @conioh@
+#define APR_HAVE_CRYPT_H         @crypth@
+#define APR_HAVE_CTYPE_H         @ctypeh@
+#define APR_HAVE_DIRENT_H        @direnth@
+#define APR_HAVE_ERRNO_H         @errnoh@
+#define APR_HAVE_FCNTL_H         @fcntlh@
+#define APR_HAVE_IO_H            @ioh@
+#define APR_HAVE_LIMITS_H        @limitsh@
+#define APR_HAVE_NETDB_H         @netdbh@
+#define APR_HAVE_NETINET_IN_H    @netinet_inh@
+#define APR_HAVE_NETINET_SCTP_H  @netinet_sctph@
+#define APR_HAVE_NETINET_SCTP_UIO_H @netinet_sctp_uioh@
+#define APR_HAVE_NETINET_TCP_H   @netinet_tcph@
+#define APR_HAVE_PROCESS_H       @processh@
+#define APR_HAVE_PTHREAD_H       @pthreadh@
+#define APR_HAVE_SEMAPHORE_H     @semaphoreh@
+#define APR_HAVE_SIGNAL_H        @signalh@
+#define APR_HAVE_STDARG_H        @stdargh@
+#define APR_HAVE_STDINT_H        @stdint@
+#define APR_HAVE_STDIO_H         @stdioh@
+#define APR_HAVE_STDLIB_H        @stdlibh@
+#define APR_HAVE_STRING_H        @stringh@
+#define APR_HAVE_STRINGS_H       @stringsh@
+#define APR_HAVE_SYS_IOCTL_H     @sys_ioctlh@
+#define APR_HAVE_SYS_SENDFILE_H  @sys_sendfileh@
+#define APR_HAVE_SYS_SIGNAL_H    @sys_signalh@
+#define APR_HAVE_SYS_SOCKET_H    @sys_socketh@
+#define APR_HAVE_SYS_SOCKIO_H    @sys_sockioh@
+#define APR_HAVE_SYS_SYSLIMITS_H @sys_syslimitsh@
+#define APR_HAVE_SYS_TIME_H      @sys_timeh@
+#define APR_HAVE_SYS_TYPES_H     @sys_typesh@
+#define APR_HAVE_SYS_UIO_H       @sys_uioh@
+#define APR_HAVE_SYS_UN_H        @sys_unh@
+#define APR_HAVE_SYS_WAIT_H      @sys_waith@
+#define APR_HAVE_TIME_H          @timeh@
+#define APR_HAVE_UNISTD_H        @unistdh@
+#define APR_HAVE_WINDOWS_H       @windowsh@
+#define APR_HAVE_WINSOCK2_H      @winsock2h@
 
 /** @} */
 /** @} */
@@ -116,7 +116,7 @@
  * or the extern "C" namespace 
  */
 
-#if APR_HAVE_WINDOWS_H
+#if APR_HAVE_WINDOWS_H && defined(WIN32)
 /* If windows.h was already included, our preferences don't matter.
  * If not, include a restricted set of windows headers to our tastes.
  */
@@ -208,127 +208,156 @@ extern "C" {
  * @{
  */
 
-#define APR_HAVE_SHMEM_MMAP_TMP     1
-#define APR_HAVE_SHMEM_MMAP_SHM     1
-#define APR_HAVE_SHMEM_MMAP_ZERO    0
-#define APR_HAVE_SHMEM_SHMGET_ANON  1
-#define APR_HAVE_SHMEM_SHMGET       1
-#define APR_HAVE_SHMEM_MMAP_ANON    1
-#define APR_HAVE_SHMEM_BEOS         0
+#define APR_HAVE_SHMEM_MMAP_TMP     @havemmaptmp@
+#define APR_HAVE_SHMEM_MMAP_SHM     @havemmapshm@
+#define APR_HAVE_SHMEM_MMAP_ZERO    @havemmapzero@
+#define APR_HAVE_SHMEM_SHMGET_ANON  @haveshmgetanon@
+#define APR_HAVE_SHMEM_SHMGET       @haveshmget@
+#define APR_HAVE_SHMEM_MMAP_ANON    @havemmapanon@
+#define APR_HAVE_SHMEM_BEOS         @havebeosarea@
 
-#define APR_USE_SHMEM_MMAP_TMP     0
-#define APR_USE_SHMEM_MMAP_SHM     0
-#define APR_USE_SHMEM_MMAP_ZERO    0
-#define APR_USE_SHMEM_SHMGET_ANON  0
-#define APR_USE_SHMEM_SHMGET       1
-#define APR_USE_SHMEM_MMAP_ANON    1
-#define APR_USE_SHMEM_BEOS         0
+#define APR_USE_SHMEM_MMAP_TMP     @usemmaptmp@
+#define APR_USE_SHMEM_MMAP_SHM     @usemmapshm@
+#define APR_USE_SHMEM_MMAP_ZERO    @usemmapzero@
+#define APR_USE_SHMEM_SHMGET_ANON  @useshmgetanon@
+#define APR_USE_SHMEM_SHMGET       @useshmget@
+#define APR_USE_SHMEM_MMAP_ANON    @usemmapanon@
+#define APR_USE_SHMEM_BEOS         @usebeosarea@
 
-#define APR_USE_FLOCK_SERIALIZE           0 
-#define APR_USE_SYSVSEM_SERIALIZE         1
-#define APR_USE_POSIXSEM_SERIALIZE        0
-#define APR_USE_FCNTL_SERIALIZE           0
-#define APR_USE_PROC_PTHREAD_SERIALIZE    0 
-#define APR_USE_PTHREAD_SERIALIZE         1 
+#define APR_USE_FLOCK_SERIALIZE           @flockser@ 
+#define APR_USE_SYSVSEM_SERIALIZE         @sysvser@
+#define APR_USE_POSIXSEM_SERIALIZE        @posixser@
+#define APR_USE_FCNTL_SERIALIZE           @fcntlser@
+#define APR_USE_PROC_PTHREAD_SERIALIZE    @procpthreadser@ 
+#define APR_USE_PTHREAD_SERIALIZE         @pthreadser@ 
 
-#define APR_HAS_FLOCK_SERIALIZE           1
-#define APR_HAS_SYSVSEM_SERIALIZE         1
-#define APR_HAS_POSIXSEM_SERIALIZE        1
-#define APR_HAS_FCNTL_SERIALIZE           1
-#define APR_HAS_PROC_PTHREAD_SERIALIZE    0
+#define APR_HAS_FLOCK_SERIALIZE           @hasflockser@
+#define APR_HAS_SYSVSEM_SERIALIZE         @hassysvser@
+#define APR_HAS_POSIXSEM_SERIALIZE        @hasposixser@
+#define APR_HAS_FCNTL_SERIALIZE           @hasfcntlser@
+#define APR_HAS_PROC_PTHREAD_SERIALIZE    @hasprocpthreadser@
 
-#define APR_PROCESS_LOCK_IS_GLOBAL        0
+#define APR_PROCESS_LOCK_IS_GLOBAL        @proclockglobal@
 
-#define APR_HAVE_CORKABLE_TCP   1 
-#define APR_HAVE_GETRLIMIT      1
-#define APR_HAVE_IN_ADDR        1
-#define APR_HAVE_INET_ADDR      1
-#define APR_HAVE_INET_NETWORK   1
-#define APR_HAVE_IPV6           1
-#define APR_HAVE_MEMMOVE        1
-#define APR_HAVE_SETRLIMIT      1
-#define APR_HAVE_SIGACTION      1
-#define APR_HAVE_SIGSUSPEND     1
-#define APR_HAVE_SIGWAIT        1
-#define APR_HAVE_SA_STORAGE     1
-#define APR_HAVE_STRCASECMP     1
-#define APR_HAVE_STRDUP         1
-#define APR_HAVE_STRICMP        0
-#define APR_HAVE_STRNCASECMP    1
-#define APR_HAVE_STRNICMP       0
-#define APR_HAVE_STRSTR         1
-#define APR_HAVE_MEMCHR         1
-#define APR_HAVE_STRUCT_RLIMIT  1
-#define APR_HAVE_UNION_SEMUN    1
-#define APR_HAVE_SCTP           0
-#define APR_HAVE_IOVEC          1
+#define APR_HAVE_CORKABLE_TCP   @have_corkable_tcp@ 
+#define APR_HAVE_GETRLIMIT      @have_getrlimit@
+#define APR_HAVE_IN_ADDR        @have_in_addr@
+#define APR_HAVE_INET_ADDR      @have_inet_addr@
+#define APR_HAVE_INET_NETWORK   @have_inet_network@
+#define APR_HAVE_IPV6           @have_ipv6@
+#define APR_HAVE_MEMMOVE        @have_memmove@
+#define APR_HAVE_SETRLIMIT      @have_setrlimit@
+#define APR_HAVE_SIGACTION      @have_sigaction@
+#define APR_HAVE_SIGSUSPEND     @have_sigsuspend@
+#define APR_HAVE_SIGWAIT        @have_sigwait@
+#define APR_HAVE_SA_STORAGE     @have_sa_storage@
+#define APR_HAVE_STRCASECMP     @have_strcasecmp@
+#define APR_HAVE_STRDUP         @have_strdup@
+#define APR_HAVE_STRICMP        @have_stricmp@
+#define APR_HAVE_STRNCASECMP    @have_strncasecmp@
+#define APR_HAVE_STRNICMP       @have_strnicmp@
+#define APR_HAVE_STRSTR         @have_strstr@
+#define APR_HAVE_MEMCHR         @have_memchr@
+#define APR_HAVE_STRUCT_RLIMIT  @struct_rlimit@
+#define APR_HAVE_UNION_SEMUN    @have_union_semun@
+#define APR_HAVE_SCTP           @have_sctp@
+#define APR_HAVE_IOVEC          @have_iovec@
 
 /*  APR Feature Macros */
-#define APR_HAS_SHARED_MEMORY     1
-#define APR_HAS_THREADS           1
-#define APR_HAS_SENDFILE          1
-#define APR_HAS_MMAP              1
-#define APR_HAS_FORK              1
-#define APR_HAS_RANDOM            1
-#define APR_HAS_OTHER_CHILD       1
-#define APR_HAS_DSO               1
-#define APR_HAS_SO_ACCEPTFILTER   0
-#define APR_HAS_UNICODE_FS        0
-#define APR_HAS_PROC_INVOKED      0
-#define APR_HAS_USER              1
-#define APR_HAS_LARGE_FILES       0
-#define APR_HAS_XTHREAD_FILES     0
-#define APR_HAS_OS_UUID           1
+#define APR_HAS_SHARED_MEMORY     @sharedmem@
+#define APR_HAS_THREADS           @threads@
+#define APR_HAS_SENDFILE          @sendfile@
+#define APR_HAS_MMAP              @mmap@
+#define APR_HAS_FORK              @fork@
+#define APR_HAS_RANDOM            @rand@
+#define APR_HAS_OTHER_CHILD       @oc@
+#define APR_HAS_DSO               @aprdso@
+#define APR_HAS_SO_ACCEPTFILTER   @acceptfilter@
+#define APR_HAS_UNICODE_FS        @have_unicode_fs@
+#define APR_HAS_PROC_INVOKED      @have_proc_invoked@
+#define APR_HAS_USER              @apr_has_user@
+#define APR_HAS_LARGE_FILES       @aprlfs@
+#define APR_HAS_XTHREAD_FILES     @apr_has_xthread_files@
+#define APR_HAS_OS_UUID           @osuuid@
 
-#define APR_PROCATTR_USER_SET_REQUIRES_PASSWORD 0
+#define APR_PROCATTR_USER_SET_REQUIRES_PASSWORD @apr_procattr_user_set_requires_password@
 
 /* APR sets APR_FILES_AS_SOCKETS to 1 on systems where it is possible
  * to poll on files/pipes.
  */
-#define APR_FILES_AS_SOCKETS      1
+#define APR_FILES_AS_SOCKETS      @file_as_socket@
 
 /* This macro indicates whether or not EBCDIC is the native character set.
  */
-#define APR_CHARSET_EBCDIC        0
+#define APR_CHARSET_EBCDIC        @apr_charset_ebcdic@
 
 /* If we have a TCP implementation that can be "corked", what flag
  * do we use?
  */
-#define APR_TCP_NOPUSH_FLAG       TCP_NOPUSH
+#define APR_TCP_NOPUSH_FLAG       @apr_tcp_nopush_flag@
 
 /* Is the TCP_NODELAY socket option inherited from listening sockets?
 */
-#define APR_TCP_NODELAY_INHERITED 1
+#define APR_TCP_NODELAY_INHERITED @tcp_nodelay_inherited@
 
 /* Is the O_NONBLOCK flag inherited from listening sockets?
 */
-#define APR_O_NONBLOCK_INHERITED 0
+#define APR_O_NONBLOCK_INHERITED @o_nonblock_inherited@
 
 /* Typedefs that APR needs. */
 
 typedef  unsigned char           apr_byte_t;
 
-typedef  short           apr_int16_t;
-typedef  unsigned short  apr_uint16_t;
+typedef  @short_value@           apr_int16_t;
+typedef  unsigned @short_value@  apr_uint16_t;
 
-typedef  int             apr_int32_t;
-typedef  unsigned int    apr_uint32_t;
+typedef  @int_value@             apr_int32_t;
+typedef  unsigned @int_value@    apr_uint32_t;
 
-#ifdef __x86_64__
-#	define APR_SIZEOF_VOIDP 8
+#define APR_SIZEOF_VOIDP @voidp_size@
+
+/*
+ * Darwin 10's default compiler (gcc42) builds for both 64 and
+ * 32 bit architectures unless specifically told not to.
+ * In those cases, we need to override types depending on how
+ * we're being built at compile time.
+ * NOTE: This is an ugly work-around for Darwin's
+ * concept of universal binaries, a single package
+ * (executable, lib, etc...) which contains both 32
+ * and 64 bit versions. The issue is that if APR is
+ * built universally, if something else is compiled
+ * against it, some bit sizes will depend on whether
+ * it is 32 or 64 bit. This is determined by the __LP64__
+ * flag. Since we need to support both, we have to
+ * handle OS X unqiuely.
+ */
+#ifdef DARWIN_10
+#undef APR_SIZEOF_VOIDP
+#undef INT64_C
+#undef UINT64_C
+#ifdef __LP64__
  typedef  long            apr_int64_t;
  typedef  unsigned long   apr_uint64_t;
+ #define APR_SIZEOF_VOIDP     8
+ #define INT64_C(v)   (v ## L)
+ #define UINT64_C(v)  (v ## UL)
 #else
-#	define APR_SIZEOF_VOIDP 4
- typedef  long long       apr_int64_t;
- typedef  unsigned long long apr_uint64_t;
+ typedef  long long            apr_int64_t;
+ typedef  unsigned long long   apr_uint64_t;
+ #define APR_SIZEOF_VOIDP     4
+ #define INT64_C(v)   (v ## LL)
+ #define UINT64_C(v)  (v ## ULL)
+#endif
+#else
+ typedef  @long_value@            apr_int64_t;
+ typedef  unsigned @long_value@   apr_uint64_t;
 #endif
 
-typedef  size_t          apr_size_t;
-typedef  ssize_t         apr_ssize_t;
-typedef  off_t           apr_off_t;
-typedef  socklen_t       apr_socklen_t;
-typedef  ino_t           apr_ino_t;
+typedef  @size_t_value@          apr_size_t;
+typedef  @ssize_t_value@         apr_ssize_t;
+typedef  @off_t_value@           apr_off_t;
+typedef  @socklen_t_value@       apr_socklen_t;
+typedef  @ino_t_value@           apr_ino_t;
 
 #if APR_SIZEOF_VOIDP == 8
 typedef  apr_uint64_t            apr_uintptr_t;
@@ -337,11 +366,11 @@ typedef  apr_uint32_t            apr_uintptr_t;
 #endif
 
 /* Are we big endian? */
-#define APR_IS_BIGENDIAN	0
+#define APR_IS_BIGENDIAN	@bigendian@
 
 /* Mechanisms to properly type numeric literals */
-#define APR_INT64_C(val) INT64_C(val)
-#define APR_UINT64_C(val) UINT64_C(val)
+@int64_literal@
+@uint64_literal@
 
 #ifdef INT16_MIN
 #define APR_INT16_MIN   INT16_MIN
@@ -422,7 +451,9 @@ typedef  apr_uint32_t            apr_uintptr_t;
  *
  * </PRE>
  */
-#define APR_THREAD_FUNC       
+#define APR_THREAD_FUNC       @apr_thread_func@
+
+#if defined(DOXYGEN) || !defined(WIN32)
 
 /**
  * The public APR functions are declared with APR_DECLARE(), so they may
@@ -476,6 +507,20 @@ typedef  apr_uint32_t            apr_uintptr_t;
  */
 #define APR_DECLARE_DATA
 
+#elif defined(APR_DECLARE_STATIC)
+#define APR_DECLARE(type)            type __stdcall
+#define APR_DECLARE_NONSTD(type)     type __cdecl
+#define APR_DECLARE_DATA
+#elif defined(APR_DECLARE_EXPORT)
+#define APR_DECLARE(type)            __declspec(dllexport) type __stdcall
+#define APR_DECLARE_NONSTD(type)     __declspec(dllexport) type __cdecl
+#define APR_DECLARE_DATA             __declspec(dllexport)
+#else
+#define APR_DECLARE(type)            __declspec(dllimport) type __stdcall
+#define APR_DECLARE_NONSTD(type)     __declspec(dllimport) type __cdecl
+#define APR_DECLARE_DATA             __declspec(dllimport)
+#endif
+
 /* Define APR_SSIZE_T_FMT.  
  * If ssize_t is an integer we define it to be "d",
  * if ssize_t is a long int we define it to be "ld",
@@ -485,31 +530,68 @@ typedef  apr_uint32_t            apr_uintptr_t;
  * configure.in.
  */
 
-#define APR_SSIZE_T_FMT "ld"
+@ssize_t_fmt@
 
 /* And APR_SIZE_T_FMT */
-#define APR_SIZE_T_FMT "lu"
+@size_t_fmt@
 
 /* And APR_OFF_T_FMT */
-#define APR_OFF_T_FMT "ld"
+@off_t_fmt@
 
 /* And APR_PID_T_FMT */
-#define APR_PID_T_FMT "d"
+@pid_t_fmt@
 
 /* And APR_INT64_T_FMT */
-#define APR_INT64_T_FMT "ld"
+@int64_t_fmt@
 
 /* And APR_UINT64_T_FMT */
-#define APR_UINT64_T_FMT "lu"
+@uint64_t_fmt@
 
 /* And APR_UINT64_T_HEX_FMT */
-#define APR_UINT64_T_HEX_FMT "lx"
+@uint64_t_hex_fmt@
+
+/*
+ * Ensure we work with universal binaries on Darwin
+ */
+#ifdef DARWIN_10
+
+#undef APR_HAS_LARGE_FILES
+#undef APR_SIZEOF_VOIDP
+#undef APR_INT64_T_FMT
+#undef APR_UINT64_T_FMT
+#undef APR_UINT64_T_HEX_FMT
+
+#ifdef __LP64__
+ #define APR_HAS_LARGE_FILES  0
+ #define APR_SIZEOF_VOIDP     8
+ #define APR_INT64_T_FMT      "ld"
+ #define APR_UINT64_T_FMT     "lu"
+ #define APR_UINT64_T_HEX_FMT "lx"
+#else
+ #define APR_HAS_LARGE_FILES  1
+ #define APR_SIZEOF_VOIDP     4
+ #define APR_INT64_T_FMT      "lld"
+ #define APR_UINT64_T_FMT     "llu"
+ #define APR_UINT64_T_HEX_FMT "llx"
+#endif
+
+#undef APR_IS_BIGENDIAN
+#ifdef __BIG_ENDIAN__
+ #define APR_IS_BIGENDIAN	1
+#else
+ #define APR_IS_BIGENDIAN	0
+#endif
+
+#undef APR_OFF_T_FMT
+#define APR_OFF_T_FMT "lld"
+
+#endif /* DARWIN_10 */
 
 /* Does the proc mutex lock threads too */
-#define APR_PROC_MUTEX_IS_GLOBAL      0
+#define APR_PROC_MUTEX_IS_GLOBAL      @proc_mutex_is_global@
 
 /* Local machine definition for console and log output. */
-#define APR_EOL_STR              "\n"
+#define APR_EOL_STR              "@eolstr@"
 
 #if APR_HAVE_SYS_WAIT_H
 #ifdef WEXITSTATUS
@@ -531,7 +613,7 @@ typedef int apr_wait_t;
 #error no decision has been made on APR_PATH_MAX for your platform
 #endif
 
-#define APR_DSOPATH "DYLD_LIBRARY_PATH"
+#define APR_DSOPATH "@shlibpath_var@"
 
 /** @} */
 

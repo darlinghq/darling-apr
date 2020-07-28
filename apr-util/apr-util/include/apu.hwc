@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-/*
- * apu.h is generated from apu.h.in by configure -- do not edit apu.h
+/* 
+ * apu.h is duplicated from apu.hwc at build time -- do not edit apu.h
  */
 /* @file apu.h
  * @brief APR-Utility main file
@@ -42,6 +42,12 @@
  * conventions at compile time.
  */
 
+/* Make sure we have our platform identifier macro defined we ask for later.
+ */
+#if defined(_WIN32) && !defined(WIN32)
+#define WIN32 1
+#endif
+
 #if defined(DOXYGEN) || !defined(WIN32)
 /**
  * The public APR-UTIL functions are declared with APU_DECLARE(), so they may
@@ -63,7 +69,7 @@
  * This assures the appropriate indirection is invoked at compile time.
  *
  * @fn APU_DECLARE_DATA type apr_variable;
- * @note APU_DECLARE_DATA extern type apr_variable; syntax is required for
+ * @note extern APU_DECLARE_DATA type apr_variable; syntax is required for
  * declarations within headers to properly import the variable.
  */
 #define APU_DECLARE_DATA
@@ -99,30 +105,42 @@
 /*
  * we always have SDBM (it's in our codebase)
  */
-#define APU_HAVE_SDBM   1
-#define APU_HAVE_GDBM   0
-#define APU_HAVE_NDBM   0
-#define APU_HAVE_DB     0
+#define APU_HAVE_SDBM           1
+
+#ifndef APU_DSO_MODULE_BUILD
+#define APU_HAVE_GDBM           0
+#define APU_HAVE_NDBM           0
+#define APU_HAVE_DB             0
 
 #if APU_HAVE_DB
-#define APU_HAVE_DB_VERSION    0
+#define APU_HAVE_DB_VERSION     0
+#endif
 #endif
 
-#define APU_HAVE_PGSQL         0
-#define APU_HAVE_MYSQL         0
-#define APU_HAVE_SQLITE3       1
-#define APU_HAVE_SQLITE2       0
-#define APU_HAVE_ORACLE        0
-#define APU_HAVE_FREETDS       0
-#define APU_HAVE_ODBC          0
+/* 
+ * we always enable dynamic driver loads within apr_dbd
+ * Win32 always has odbc (it's always installed)
+ */
+#ifndef APU_DSO_MODULE_BUILD
+#define APU_HAVE_PGSQL          0
+#define APU_HAVE_MYSQL          0
+#define APU_HAVE_SQLITE3        0
+#define APU_HAVE_SQLITE2        0
+#define APU_HAVE_ORACLE         0
+#define APU_HAVE_FREETDS        0
+#define APU_HAVE_ODBC           1
+#endif
 
-#define APU_HAVE_CRYPTO        0
-#define APU_HAVE_OPENSSL       0
-#define APU_HAVE_NSS           0
+#define APU_HAVE_CRYPTO         @apu_have_crypto_10@
 
-#define APU_HAVE_APR_ICONV     0
-#define APU_HAVE_ICONV         1
-#define APR_HAS_XLATE          (APU_HAVE_APR_ICONV || APU_HAVE_ICONV)
+#ifndef APU_DSO_MODULE_BUILD
+#define APU_HAVE_OPENSSL        0
+#define APU_HAVE_NSS            0
+#endif
+
+#define APU_HAVE_APR_ICONV      @apu_have_apr_iconv_10@
+#define APU_HAVE_ICONV          0
+#define APR_HAS_XLATE           (APU_HAVE_APR_ICONV || APU_HAVE_ICONV)
 
 #endif /* APU_H */
 /** @} */
