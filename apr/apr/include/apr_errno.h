@@ -1312,4 +1312,4 @@ APR_DECLARE(char *) apr_strerror(apr_status_t statcode, char *buf,
 }
 #endif
 
-#endif  /* ! APR_ERRNO_H */
+#endif // APR_ERRNO_H

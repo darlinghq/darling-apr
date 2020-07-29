@@ -6,24 +6,44 @@ if(COMMAND cmake_policy)
 	cmake_policy(SET CMP0003 NEW)
 endif(COMMAND cmake_policy)
 
-add_definitions(-DHAVE_CONFIG_H)
-
-# Hide warnings
-add_definitions(
-	-w
-	-nostdinc
+add_compile_definitions(
+	HAVE_CONFIG_H
+	DARWIN
+	SIGPROCMASK_SETS_THREAD_MASK
+	DARWIN_10
 )
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -U_POSIX_C_SOURCE -D__DARWIN_UNIX03 -fblocks -fPIC -ggdb -O0")
+include_directories(
+	${CMAKE_CURRENT_SOURCE_DIR}/../gen/include
+	${CMAKE_CURRENT_SOURCE_DIR}/include/arch/unix
+	${CMAKE_CURRENT_SOURCE_DIR}/../gen/include/arch/unix
+	${CMAKE_CURRENT_SOURCE_DIR}/include/arch/unix
+	${CMAKE_CURRENT_SOURCE_DIR}/include
+	${CMAKE_CURRENT_SOURCE_DIR}/include/private
+	${CMAKE_CURRENT_SOURCE_DIR}/../gen/include/private
+)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include/arch/unix)
+# Hide warnings
+add_compile_options(
+	-w
+	-nostdinc
+	-fblocks
+
+	#-U_POSIX_C_SOURCE
+	#-D__DARWIN_UNIX03
+)
 
 set(apr_sources
 	atomic/unix/builtins.c
 	atomic/unix/ia32.c
 	atomic/unix/mutex.c
+	atomic/unix/ppc.c
+	atomic/unix/s390.c
+	atomic/unix/solaris.c
+
 	dso/unix/dso.c
+
+	encoding/apr_escape.c
 
 	file_io/unix/buffer.c
 	file_io/unix/copy.c
@@ -31,8 +51,8 @@ set(apr_sources
 	file_io/unix/dir.c
 	file_io/unix/fileacc.c
 	file_io/unix/filedup.c
-	file_io/unix/filepath.c
 	file_io/unix/filepath_util.c
+	file_io/unix/filepath.c
 	file_io/unix/filestat-32-bit-inode.c
 	file_io/unix/filestat.c
 	file_io/unix/flock.c
@@ -61,30 +81,32 @@ set(apr_sources
 	misc/unix/start.c
 	misc/unix/version.c
 
-	mmap/unix/mmap.c
 	mmap/unix/common.c
+	mmap/unix/mmap.c
 
 	network_io/unix/inet_ntop.c
 	network_io/unix/inet_pton.c
 	network_io/unix/multicast.c
 	network_io/unix/sendrecv.c
 	network_io/unix/sockaddr.c
-	network_io/unix/sockets.c
 	network_io/unix/socket_util.c
+	network_io/unix/sockets.c
 	network_io/unix/sockopt.c
-	
+
 	passwd/apr_getpass.c
 
+	poll/unix/epoll.c
 	poll/unix/kqueue.c
 	poll/unix/poll.c
 	poll/unix/pollcb.c
 	poll/unix/pollset.c
 	poll/unix/port.c
 	poll/unix/select.c
+	poll/unix/z_asio.c
 
 	random/unix/apr_random.c
-	random/unix/sha2.c
 	random/unix/sha2_glue.c
+	random/unix/sha2.c
 
 	shmem/unix/shm.c
 
@@ -98,6 +120,7 @@ set(apr_sources
 	support/unix/waitio.c
 
 	tables/apr_hash.c
+	tables/apr_skiplist.c
 	tables/apr_tables.c
 
 	threadproc/unix/proc.c

@@ -1,0 +1,20 @@
+#! /bin/sh
+#
+# Created by configure
+
+CC="/Users/ariel/private-bin/clang"; export CC
+CFLAGS="-arch x86_64 -arch i386"; export CFLAGS
+CPPFLAGS="-isystem/Users/ariel/git/darling/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -isystem/Users/ariel/arch/build/darling/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -isystem/Users/ariel/git/darling/framework-include -DDARLING"; export CPPFLAGS
+"../apr/configure" \
+"--bindir=/usr/bin" \
+"--with-installbuilddir=/usr/share/apr-1/build-1" \
+"--enable-dso=dlfcn" \
+"apr_lock_method=USE_FLOCK_SERIALIZE" \
+"ac_cv_func_kqueue=yes" \
+"ac_cv_func_poll=yes" \
+"CFLAGS=-arch x86_64 -arch i386" \
+"LD=/Users/ariel/private-bin/ld" \
+"CC=/Users/ariel/private-bin/clang" \
+"CXX=/Users/ariel/private-bin/clang++" \
+"CPPFLAGS=-isystem/Users/ariel/git/darling/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -isystem/Users/ariel/arch/build/darling/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include -isystem/Users/ariel/git/darling/framework-include -DDARLING" \
+"$@"

@@ -1,0 +1,8 @@
+*.o
+*.dylib
+*.a
+*.lo
+*.la
+*.lai
+*.log
+apr/gen/tools/gen_test_char
