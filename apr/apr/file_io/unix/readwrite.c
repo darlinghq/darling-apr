@@ -25,6 +25,10 @@
 #define USE_WAIT_FOR_IO
 #endif
 
+#ifdef DARLING
+long fdatasync(int fd);
+#endif
+
 static apr_status_t file_read_buffered(apr_file_t *thefile, void *buf,
                                        apr_size_t *nbytes)
 {
