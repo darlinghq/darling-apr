@@ -29,7 +29,7 @@ add_compile_options(
 	-nostdinc
 	-fblocks
 
-	#-U_POSIX_C_SOURCE
+	-U_POSIX_C_SOURCE
 	#-D__DARWIN_UNIX03
 )
 
